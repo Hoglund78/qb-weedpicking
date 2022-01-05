@@ -37,7 +37,7 @@ AddEventHandler('onResourceStart', function(resource)
 end)
 CreateThread(function()--weed
 	while true do
-		Wait(10)
+		Wait(1)
 
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
@@ -77,10 +77,10 @@ CreateThread(function()--weed
 					ClearPedTasks(PlayerPedId())
 				end)
 
-				isPickingUp = false
 			end
 		else
 			Wait(500)
+			isPickingUp = false	
 		end
 	end
 end)
@@ -174,7 +174,7 @@ CreateThread(function()
 		Wait(200)
 	end
 	while true do
-		Wait(10)
+		Wait(1)
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 
@@ -253,12 +253,13 @@ function Processweed()
 				break
 			end
 		end
+		isProcessing = false
 		ClearPedTasks(PlayerPedId())
 	end, function()
+		isProcessing = false
 		ClearPedTasks(PlayerPedId())
 	end) -- Cancel
 	
-	isProcessing = false
 end
 
 CreateThread(function()
@@ -338,10 +339,11 @@ function SellDrug()
 				break
 			end
 		end
+		isProcessing2 = false
 		ClearPedTasks(PlayerPedId())
 	end, function()
+		isProcessing2 = false
 		ClearPedTasks(PlayerPedId())
 	end) -- Cancel
 
-	isProcessing2 = false
 end
